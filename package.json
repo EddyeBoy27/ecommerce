@@ -1,0 +1,30 @@
+{
+  "name": "ecommerce_backend",
+  "version": "1.0.0",
+  "description": "Backend of Ecommerce in Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon",
+    "build": "npx tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/EddyeBoy27/ecommerce.git"
+  },
+  "author": "Felipe Andrade Lima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EddyeBoy27/ecommerce/issues"
+  },
+  "homepage": "https://github.com/EddyeBoy27/ecommerce#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.18",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.5.0"
+  }
+}
