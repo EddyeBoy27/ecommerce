@@ -6,6 +6,8 @@ dotenv.config();
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use("/products", products);
 
 app.listen(process.env.SERVER_PORT, () => {

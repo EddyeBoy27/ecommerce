@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { connectionDB } from "../database";
 import { Products } from "../interfaces/products/products.interface";
 
-export const getAllProducts = async (req: Request, res: Response): Promise<Products> => {
-  //   const db = (await connectionDB()).connection.collection("teste");
+export function getAllProducts(req: Request, res: Response): Response<Products> {
+  // const db = (await connectionDB()).connection.collection("teste");
   const products = {
     items: [
       {
@@ -19,5 +19,5 @@ export const getAllProducts = async (req: Request, res: Response): Promise<Produ
     ],
     totalEntries: 10,
   };
-  return res.send(products);
-};
+  return res.status(200).json(products);
+}
