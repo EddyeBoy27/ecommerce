@@ -1,6 +1,6 @@
-import { Product } from "./single.product.interface";
+import { IProduct } from "./single.product.interface";
 
-export interface Products {
-  items: Product[];
+export interface IProducts {
+  items: IProduct[];
   totalEntries: number;
 }
