@@ -1,20 +1,7 @@
-import { Products } from "../interfaces/products/products.interface";
+import { IProducts } from "../interfaces/products/products.interface";
+import * as productModel from "../models";
 
-export const getAllProducts = async (): Promise<Products> => {
-  const products = {
-    items: [
-      {
-        title: "lala",
-        description: "lala",
-        image: "lalala",
-        value: 100,
-        stars: 2,
-        discountCoupon: true,
-        inventory: 29,
-        category: "lala",
-      },
-    ],
-    totalEntries: 10,
-  };
-  return products;
+export const getAllProducts = async (): Promise<IProducts> => {
+  const prodModAll = await productModel.getAllProducts();
+  return prodModAll;
 };
