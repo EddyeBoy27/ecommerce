@@ -13,8 +13,11 @@ export const getAllProducts = async (
   return res.status(200).json(prodServAll);
 };
 
-export const createProduct = async (req: Request, res: Response): Promise<Response<IProduct>> => {
+export const createProduct = async (
+  req: Request,
+  res: Response
+): Promise<Response<IProduct | Error>> => {
   await middleware.validate(req.body, productSchema);
-  const createProduct = await productService.createProduct<IProduct>(req.body);
+  const createProduct = await productService.createProduct(req.body);
   return res.status(201).json(createProduct);
 };

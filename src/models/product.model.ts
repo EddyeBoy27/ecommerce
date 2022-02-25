@@ -9,3 +9,9 @@ export const getAllProducts = async (): Promise<IProducts> => {
   await closeDB();
   return items;
 };
+
+export const createProduct = async (prod: IProduct): Promise<IProduct | any> => {
+  const db = (await connectionDB()).collection("Product");
+  const newProd = await db.insertOne(prod);
+  return newProd;
+};
