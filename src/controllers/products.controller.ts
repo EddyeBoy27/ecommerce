@@ -13,6 +13,17 @@ export const getAllProducts = async (
   return res.status(200).json(prodServAll);
 };
 
+export const getOneProduct = async (
+  req: Request,
+  res: Response
+): Promise<Response<IProduct> | any> => {
+  const {
+    params: { id },
+  } = req;
+  const prodServOne = await productService.getOneProduct(id);
+  return res.status(200).json(prodServOne);
+};
+
 export const createProduct = async (
   req: Request,
   res: Response

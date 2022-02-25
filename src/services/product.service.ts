@@ -7,6 +7,11 @@ export const getAllProducts = async (): Promise<IProducts> => {
   return prodModAll;
 };
 
+export const getOneProduct = async (id: string): Promise<IProduct> => {
+  const prodModOne = await productModel.getOneProduct(id);
+  return prodModOne;
+};
+
 export const createProduct = async (prod: IProduct): Promise<IProduct> => {
   const newProdMod = await productModel.createProduct(prod);
   return newProdMod;
