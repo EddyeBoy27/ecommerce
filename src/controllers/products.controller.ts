@@ -3,7 +3,7 @@ import { IProducts } from "../interfaces/products/products.interface";
 import { IProduct } from "../interfaces/products/single.product.interface";
 import * as productService from "../services";
 import * as middleware from "../middlewares";
-import { productSchema } from "../middlewares/schemas";
+import { partialProductSchema, productSchema } from "../middlewares/schemas";
 
 export const getAllProducts = async (
   _req: Request,
@@ -21,9 +21,10 @@ export const getOneProduct = async (req: Request, res: Response): Promise<Respon
   return res.status(200).json(prodServOne);
 };
 
-export const createProduct = async (req: Request, res: Response): Promise<Response<IProduct>> => {
-  await middleware.validate(req.body, productSchema);
-  const createProduct = await productService.createProduct(req.body);
+export const createProduct = async (req: Request, res: Response): Promise<Response<IProduct[]>> => {
+  const { ...prod } = req.body;
+  await middleware.validate(prod, productSchema);
+  const createProduct = await productService.createProduct(prod);
   return res.status(201).json(createProduct);
 };
 
@@ -31,12 +32,17 @@ export const editProduct = async (req: Request, res: Response): Promise<Partial<
   const {
     params: { id },
   } = req;
-  console.log("partial", (req.body as keyof typeof productSchema) ? true : false);
-  console.log("id", id);
+  const { ...product } = req.body;
+  if (req.method === "PUT") {
+    await middleware.partialValidade(product, partialProductSchema);
+  }
+  const putProduct = await productService.editProduct(id, product);
+  return putProduct;
 };
 
 export const deleteProduct = async (req: Request, res: Response): Promise<void> => {
   const {
     params: { id },
   } = req;
+  return;
 };
