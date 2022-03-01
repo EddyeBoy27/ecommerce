@@ -7,8 +7,9 @@ export const validate = async (obj: IProduct, schema: ObjectSchema): Promise<boo
     if (val) return true;
   } catch (err: any) {
     const { message, type } = err;
-    console.log(type);
     const error = { error: { message, type: err["details"][0]["type"] }, code: "BAD_REQUEST" };
     throw error;
   }
 };
+
+export const validatePartial = async (obj: Partial<IProduct>, schema: ObjectSchema): Promise<boolean>
