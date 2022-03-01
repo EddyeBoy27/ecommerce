@@ -13,7 +13,7 @@ export const getAllProducts = async (
   return res.status(200).json(prodServAll);
 };
 
-export const getOneProduct = async (req: Request, res: Response): Promise<Response<IProduct>> => {
+export const getOneProduct = async (req: Request, res: Response): Promise<Response<IProduct[]>> => {
   const {
     params: { id },
   } = req;
@@ -28,7 +28,7 @@ export const createProduct = async (req: Request, res: Response): Promise<Respon
   return res.status(201).json(createProduct);
 };
 
-export const editProduct = async (req: Request, res: Response): Promise<Partial<IProduct>> => {
+export const editProduct = async (req: Request, res: Response): Promise<Response<IProduct>> => {
   const {
     params: { id },
   } = req;
@@ -37,12 +37,13 @@ export const editProduct = async (req: Request, res: Response): Promise<Partial<
     await middleware.partialValidade(product, partialProductSchema);
   }
   const putProduct = await productService.editProduct(id, product);
-  return putProduct;
+  return res.status(200).json(putProduct);
 };
 
-export const deleteProduct = async (req: Request, res: Response): Promise<void> => {
+export const deleteProduct = async (req: Request, res: Response): Promise<Response<void>> => {
   const {
     params: { id },
   } = req;
-  return;
+  productService.deleteProduct(id);
+  return res.status(200);
 };

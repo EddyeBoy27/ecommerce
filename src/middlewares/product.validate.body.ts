@@ -21,8 +21,8 @@ export const partialValidade = async (
     const val = await schema.validateAsync(obj);
     if (val) return true;
   } catch (err: any) {
-    const message = err;
-    const error = { error: { message, type: err["details"][0]["type"], code: "BAD_REQUEST" } };
+    const { message } = err;
+    const error = { error: { message, type: err["details"][0]["type"] }, code: "BAD_REQUEST" };
     throw error;
   }
 };

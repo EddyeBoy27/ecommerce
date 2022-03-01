@@ -15,10 +15,11 @@ export const errorHandler = async (
   res: Response,
   _next: NextFunction
 ) => {
+  // console.log(err);
   if (err.error && err.code in codeErrors) {
     return res.status(codeErrors[err.code as keyof typeof codeErrors]).json(err);
   }
   return res
     .status(codeErrors["INTERNAL_ERROR"])
-    .json({ error: { message: "Internal Error", code: "INTERNAL_ERROR" } });
+    .json({ error: { message: "Internal Error, verify logs", code: "INTERNAL_ERROR" } });
 };

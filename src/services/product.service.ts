@@ -1,7 +1,6 @@
 import { IProducts } from "../interfaces/products/products.interface";
 import { IProduct } from "../interfaces/products/single.product.interface";
 import * as productModel from "../models";
-import { ObjectID } from "bson";
 
 export const getAllProducts = async (): Promise<IProducts> => {
   const prodModAll = await productModel.getAllProducts();
@@ -18,10 +17,11 @@ export const createProduct = async (prod: IProduct): Promise<IProduct[]> => {
   return newProdMod;
 };
 
-export const editProduct = async (
-  id: string,
-  product: Partial<IProduct>
-): Promise<Partial<IProduct>> => {
+export const editProduct = async (id: string, product: Partial<IProduct>): Promise<IProduct> => {
   const updateProduct = await productModel.editProduct(id, product);
   return updateProduct;
+};
+
+export const deleteProduct = async (id: string): Promise<void> => {
+  return await productModel.deleteProduct(id);
 };
